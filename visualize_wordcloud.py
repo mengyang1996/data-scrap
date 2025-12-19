@@ -7,7 +7,7 @@ from collections import Counter
 from analysis import preprocess_title
 
 # --- CONFIGURATION ---
-conference = "neurips"
+conference = "kdd"
 INPUT_FILE = f"datasets/{conference}_papers_2015_2025.csv"
 OUTPUT_GIF = f"gifs/{conference}_titles_wordcloud.gif"
 TEMP_DIR = "temp_frames"
@@ -61,7 +61,7 @@ def main():
         plt.figure(figsize=(10, 5))
         plt.imshow(wc, interpolation='bilinear')
         plt.axis('off')
-        plt.title(f"NeurIPS {year} Top Keywords", fontsize=20)
+        plt.title(f"{conference.upper()} {year} Top Keywords", fontsize=20)
         plt.tight_layout(pad=1)
         
         # Save frame
