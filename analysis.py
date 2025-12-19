@@ -24,6 +24,37 @@ STOP_WORDS = set([
     "yourselves", "via"
 ])
 
+# Add domain-specific stop words that are too common in NeurIPS titles to be informative
+STOP_WORDS.update([
+    "dataset", "data", "datas", "learn", "learning", "learnt", "learned",
+    "algorithm", "algorithms", "proposed", "propose", "proposal",
+    "base", "based", "basis", "object", "objects", "method", "methods",
+    "train", "training", "trained", "set", "sets", "recent", "recently",
+    "paper", "papers", "result", "results", "model", "models",
+    "neural", "network", "networks", "deep",
+    "use", "using", "used", "usage",
+    "problem", "problems",
+    "approach", "approaches",
+    "task", "tasks",
+    "performance", "performances",
+    "state", "art",
+    "work", "works",
+    "present", "presents", "presented",
+    "show", "shows", "shown",
+    "study", "studies",
+    "experiment", "experiments", "experimental",
+    "analysis", "analyses", "analyze",
+    "framework", "frameworks",
+    "technique", "techniques",
+    "application", "applications",
+    "novel", "new",
+    "general", "generalized",
+    "improve", "improves", "improved", "improvement",
+    "evaluate", "evaluation", "evaluated",
+    "different", "various"
+])
+
+
 def preprocess_title(title):
     """
     1. Lowercase

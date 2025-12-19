@@ -22,7 +22,7 @@ HEADERS = {
 def get_soup(url):
     """Helper to fetch a URL and return a BeautifulSoup object."""
     try:
-        response = requests.get(url, headers=HEADERS)
+        response = requests.get(url, headers=HEADERS, timeout=10)
         response.raise_for_status()
         return BeautifulSoup(response.content, 'html.parser')
     except requests.exceptions.RequestException as e:
@@ -126,28 +126,30 @@ def main():
         return
 
     print(f"Years found: {[y[0] for y in year_links]}")
+
+    print(year_links)
     
-    all_data = []
+    # all_data = []
 
     # 3. Loop through each year
-    for year, link in year_links:
-        year_data = parse_conference_page(year, link)
-        all_data.extend(year_data)
+    # for year, link in year_links:
+    #     year_data = parse_conference_page(year, link)
+    #     all_data.extend(year_data)
         
-        # POLITE WAIT: Sleep 2 seconds between requests
-        time.sleep(2) 
+    #     # POLITE WAIT: Sleep 2 seconds between requests
+    #     time.sleep(2) 
 
-    # 4. Save to CSV
-    if all_data:
-        keys = all_data[0].keys()
-        with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as f:
-            dict_writer = csv.DictWriter(f, fieldnames=keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(all_data)
-        print(f"\nSuccess! Scraped {len(all_data)} papers.")
-        print(f"Data saved to: {OUTPUT_FILE}")
-    else:
-        print("No data found.")
+    # # 4. Save to CSV
+    # if all_data:
+    #     keys = all_data[0].keys()
+    #     with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as f:
+    #         dict_writer = csv.DictWriter(f, fieldnames=keys)
+    #         dict_writer.writeheader()
+    #         dict_writer.writerows(all_data)
+    #     print(f"\nSuccess! Scraped {len(all_data)} papers.")
+    #     print(f"Data saved to: {OUTPUT_FILE}")
+    # else:
+    #     print("No data found.")
 
 if __name__ == "__main__":
     main()
